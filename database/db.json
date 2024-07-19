@@ -1,0 +1,29 @@
+{
+  "candles": [
+    {
+      "brandID": 1,
+      "name": "Witches' Brew",
+      "size": 32,
+      "form": "jar candle",
+      "season": "fall",
+      "holiday": "Halloween",
+      "scentDescription": [
+        "spooky"
+      ],
+      "color": [
+        "black"
+      ],
+      "year": 2018,
+      "notes": null,
+      "id": 1,
+      "image": null
+    }
+  ],
+  "brands": [
+    {
+      "name": "Yankee Candle",
+      "website": "yankeecandle.com",
+      "id": 1
+    }
+  ]
+}
