@@ -1,7 +1,7 @@
 import rawData from "./db.json" with { type: "json" };
 import {Brand, Candle, Data} from "./candle-data.ts";
 
-export const data: Data = rawData;
+const data: Data = rawData;
 
 // a CandleCreationInfo is a Candle without id or image
 export type CandleCreationInfo = Omit<Candle, "id"|"image">
@@ -61,6 +61,21 @@ export function addBrand(brandInfo: BrandCreationInfo) {
 function getNextBrandId(): number {
   const newID = Math.max(0, ...data.brands.map(brand => brand.id)) + 1;
   return newID;
+}
+
+// returns a brand if given id number
+export function getBrand(brandID: number): Brand | null {
+  for (const brand of data.brands) {
+    if (brand.id === brandID) {
+      return brand;
+    }
+  }
+  return null;
+}
+
+// returns all brand objects
+export function getAllBrands(): ReadonlyArray<Brand> {
+  return data.brands;
 }
 
 // end api definition

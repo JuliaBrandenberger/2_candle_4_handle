@@ -1,7 +1,7 @@
 import { FreshContext } from "$fresh/server.ts";
 import { getCandle } from "../../../../database/db.ts";
 
-// handler to return candle info
+// handler to return candle info, takes request and returns response with additional context object available
 export const handler = (_req: Request, ctx: FreshContext): Response => {
   // ctx(context) has a field called params, and a field in params called "id", this id comes from our nameing the file [id]
   // see foo example for clarity
