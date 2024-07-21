@@ -29,6 +29,45 @@ export default function AddCandle() {
             {options}
           </select>
         </fieldset>
+        <fieldset>
+          <label>Size (in oz): </label>
+          <select name="size">
+            <option value="32">32</option>
+            <option value="14.5">14.5</option>
+            <option value="2">2</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label>Form: </label>
+          <select name="form">
+            <option value="jar candle">jar candle</option>
+            <option value="tea light">tea light</option>
+            <option value="votive">votive</option>
+            <option value="tapered candle">tapered candle</option>
+            <option value="wax melt">wax melt</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label>Season: </label>
+          <select name="season">
+            <option value="fall">fall</option>
+            <option value="winter">winter</option>
+            <option value="spring">spring</option>
+            <option value="summer">summer</option>
+            <option value="all season">all season</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <label>Holiday: </label>
+          <select name="holiday">
+            <option value="Halloween">Halloween</option>
+            <option value="Christmas">Christmas</option>
+            <option value="Easter">Easter</option>
+            <option value="None">None</option>
+          </select>
+        </fieldset>
+        {/* // SCENT DESCRIPTION //  */}
+        
         
         <input type="submit"></input>
       </form>

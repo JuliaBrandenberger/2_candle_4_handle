@@ -43,4 +43,38 @@ export type CandleForm = "jar candle" | "tea light" | "votive" | "tapered candle
 
 export type CandleSeason = "fall" | "winter" | "spring" | "summer" | "all season"
 
-export type CandleHoliday = "Halloween" | "Christmas" | "Easter" 
+export type CandleHoliday = "Halloween" | "Christmas" | "Easter" | "None"
+
+// will allow typescript to tell if it is a string of the right type, you can call this fn on the string you will get to make sure it is the right holiday
+export function isCandleHoliday(value: string): value is CandleHoliday {
+  switch (value) {
+    case "Halloween": 
+    case "Christmas":
+    case "Easter":
+      return true;
+  }
+  return false;
+}
+
+// do this for form and season
+export function isCandleSeason(value: string): value is CandleSeason {
+  switch (value) {
+    case "fall":
+    case "winter":
+    case "spring":
+    case "summer":
+    case "all season":
+  }
+  return false;
+}
+
+export function isCandleForm(value: string): value is CandleForm {
+  switch (value) {
+    case "jar candle":
+    case "tea light":
+    case "votive":
+    case "tapered candle":
+    case "wax melt":
+  }
+  return false;
+}
