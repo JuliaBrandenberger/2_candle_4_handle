@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { getAllBrands } from "../database/db.ts";
-import CandlePage from "./candles/[id].tsx";
+import { candleForms, candleSeasons, candleHolidays } from "../database/candle-data.ts";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -14,7 +14,11 @@ export const handler: Handlers = {
 
 // export default function- used by our framework to load the html (know what html to display)
 export default function AddCandle() {
-  const options = getAllBrands().map(brand => <option value={brand.id}>{brand.name}</option>)
+  const brandOptions = getAllBrands().map(brand => <option value={brand.id}>{brand.name}</option>);
+  const formOptions = candleForms.map(form => <option value={form}>{form}</option>);
+  const seasonOptions = candleSeasons.map(season => <option value={season}>{season}</option>);
+  const holidayOptions = candleHolidays.map(holiday => <option value={holiday}>{holiday}</option>);
+
   return (
     <div>
       <h1>Add Your Candle!</h1>
@@ -26,7 +30,7 @@ export default function AddCandle() {
         <fieldset>
           <label>Brand: </label>
           <select name="brand">
-            {options}
+            {brandOptions}
           </select>
         </fieldset>
         <fieldset>
@@ -40,34 +44,22 @@ export default function AddCandle() {
         <fieldset>
           <label>Form: </label>
           <select name="form">
-            <option value="jar candle">jar candle</option>
-            <option value="tea light">tea light</option>
-            <option value="votive">votive</option>
-            <option value="tapered candle">tapered candle</option>
-            <option value="wax melt">wax melt</option>
+            {formOptions}
           </select>
         </fieldset>
         <fieldset>
           <label>Season: </label>
           <select name="season">
-            <option value="fall">fall</option>
-            <option value="winter">winter</option>
-            <option value="spring">spring</option>
-            <option value="summer">summer</option>
-            <option value="all season">all season</option>
+            {seasonOptions}
           </select>
         </fieldset>
         <fieldset>
           <label>Holiday: </label>
           <select name="holiday">
-            <option value="Halloween">Halloween</option>
-            <option value="Christmas">Christmas</option>
-            <option value="Easter">Easter</option>
-            <option value="None">None</option>
+            {holidayOptions}
           </select>
         </fieldset>
         {/* // SCENT DESCRIPTION //  */}
-        
         
         <input type="submit"></input>
       </form>
