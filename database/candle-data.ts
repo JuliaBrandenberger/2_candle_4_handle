@@ -11,8 +11,8 @@ export type Candle = {
   form: CandleForm;
   season: CandleSeason;
   holiday: CandleHoliday | null;
-  scentDescription: string[]; // options for them to choose from 
-  color: string[]; 
+  scentDescription: string[]; // options for them to choose from
+  color: string[];
   year: number | null;
   notes: string | null;
   image: Image | null;
@@ -36,45 +36,48 @@ export type Data = {
   brands: Brand[];
 }
 
+export const candleForms = [
+  "jar candle",
+  "tea light",
+  "votive",
+  "tapered candle",
+  "wax melt",
+] as const;
 
+export type CandleForm = (typeof candleForms)[number];
 
-// candle form is a union of strings
-export type CandleForm = "jar candle" | "tea light" | "votive" | "tapered candle" | "wax melt"
+export const candleSeasons = [
+  "fall",
+  "winter",
+  "spring",
+  "summer",
+  "all season",
+] as const;
 
-export type CandleSeason = "fall" | "winter" | "spring" | "summer" | "all season"
+export type CandleSeason = (typeof candleSeasons)[number];
 
-export type CandleHoliday = "Halloween" | "Christmas" | "Easter" | "None"
+export const candleHolidays = [
+  "Halloween",
+  "Christmas",
+  "Easter",
+  "None",
+] as const;
+
+export type CandleHoliday = (typeof candleHolidays)[number];
 
 // will allow typescript to tell if it is a string of the right type, you can call this fn on the string you will get to make sure it is the right holiday
 export function isCandleHoliday(value: string): value is CandleHoliday {
-  switch (value) {
-    case "Halloween": 
-    case "Christmas":
-    case "Easter":
-      return true;
-  }
-  return false;
+  const validValues: readonly string[] = candleHolidays;
+  return validValues.includes(value);
 }
 
 // do this for form and season
 export function isCandleSeason(value: string): value is CandleSeason {
-  switch (value) {
-    case "fall":
-    case "winter":
-    case "spring":
-    case "summer":
-    case "all season":
-  }
-  return false;
+  const validValues: readonly string[] = candleSeasons;
+  return validValues.includes(value);
 }
 
 export function isCandleForm(value: string): value is CandleForm {
-  switch (value) {
-    case "jar candle":
-    case "tea light":
-    case "votive":
-    case "tapered candle":
-    case "wax melt":
-  }
-  return false;
+  const validValues: readonly string[] = candleForms;
+  return validValues.includes(value);
 }
