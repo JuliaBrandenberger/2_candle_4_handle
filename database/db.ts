@@ -82,5 +82,5 @@ export function getAllBrands(): ReadonlyArray<Brand> {
 
 async function saveData() {
   const json = JSON.stringify(data, null, 2); // print with 2 indentation
-  await Deno.writeTextFile("db.json", json);
+  await Deno.writeTextFile("./database/db.json", json);
 }

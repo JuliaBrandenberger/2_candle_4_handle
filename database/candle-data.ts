@@ -11,11 +11,11 @@ export type Candle = {
   form: CandleForm;
   season: CandleSeason;
   holiday: CandleHoliday | null;
-  scentDescription: string[]; // options for them to choose from
-  color: string[];
-  year: number | null;
-  notes: string | null;
-  image: Image | null;
+  scentDescription: string[]; // user will write in, communicate with user on how to list, probably create custom component for these things
+  color: string[]; // user will write in, communicate with user on how to list
+  year: number | null; // convert string to number like brand ID or size
+  notes: string | null; // regular input
+  image: Image | null; // don't give user this option for the moment 
 }
 
 // Brand has its own type because, if any of the fields associated w/ a brand change, we want them to change across the board. Ex: website change
@@ -72,8 +72,8 @@ export function isCandleHoliday(value: string): value is CandleHoliday {
 }
 
 // do this for form and season
-export function isCandleSeason(value: string): value is CandleSeason {
-  const validValues: readonly string[] = candleSeasons;
+export function isCandleSeason(value: unknown): value is CandleSeason {
+  const validValues: readonly unknown[] = candleSeasons;
   return validValues.includes(value);
 }
 
