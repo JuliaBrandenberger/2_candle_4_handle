@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $add_brand from "./routes/add-brand.tsx";
 import * as $add_candle from "./routes/add-candle.tsx";
 import * as $api_candle_get_id_ from "./routes/api/candle/get/[id].ts";
 import * as $api_joke from "./routes/api/joke.ts";
@@ -18,6 +19,7 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/add-brand.tsx": $add_brand,
     "./routes/add-candle.tsx": $add_candle,
     "./routes/api/candle/get/[id].ts": $api_candle_get_id_,
     "./routes/api/joke.ts": $api_joke,

@@ -25,6 +25,11 @@
       "name": "Yankee Candle",
       "website": "yankeecandle.com",
       "id": 1
+    },
+    {
+      "name": "Goose Creek Candle",
+      "website": "http://goosecreekcandle.com",
+      "id": 2
     }
   ]
 }
