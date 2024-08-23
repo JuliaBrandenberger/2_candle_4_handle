@@ -49,12 +49,12 @@ function getNextCandleId(): number {
 }
 
 export function addBrand(brandInfo: BrandCreationInfo) {
-  const id = getNextBrandId()
+  const id = getNextBrandId();
   const brand: Brand = {
     ...brandInfo,
     id,
   }
-  data.brands.push(brand)
+  data.brands.push(brand);
   saveData();
 }
 
