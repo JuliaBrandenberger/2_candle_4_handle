@@ -4,7 +4,7 @@ import {Brand, Candle, Data} from "./candle-data.ts";
 const data: Data = rawData;
 
 // a CandleCreationInfo is a Candle without id or image
-export type CandleCreationInfo = Omit<Candle, "id"|"image">
+export type CandleCreationInfo = Omit<Candle, "id">
 
 // a BrandCreationInfo is a Brand without an id
 export type BrandCreationInfo = Omit<Brand, "id">
@@ -16,14 +16,11 @@ export type BrandCreationInfo = Omit<Brand, "id">
 export function addCandle(candleInfo: CandleCreationInfo) {
   // assign candle id to candle
   const id = getNextCandleId();
-  const image = null;
   const candle: Candle = {
     /// ...candleInfo will copy all of the fields from candleInfo
     ...candleInfo, 
     /// id: id, the value of id is id (the id we created in this function)
     id: id, 
-    // image, is a shorthand for image: image, (we could do that for id) - if there's something in scope that has this name use its value for this field
-    image, 
   };
   // assign image
   data.candles.push(candle);
@@ -83,4 +80,44 @@ export function getAllBrands(): ReadonlyArray<Brand> {
 async function saveData() {
   const json = JSON.stringify(data, null, 2); // print with 2 indentation
   await Deno.writeTextFile("./database/db.json", json);
+}
+
+export function uuid(): string {
+  /// generate 5 sets of numbers, group of 8, 3 groups of 4, group of 12 with hyphens in between. This generates unique file names.
+  let returnString = "";
+  returnString += generate(8);
+  returnString += "-";
+  returnString += generate(4);
+  returnString += "-";
+  returnString += generate(4);
+  returnString += "-";
+  returnString += generate(4);
+  returnString += "-";
+  returnString += generate(12);
+  return returnString;
+}
+
+function hex(): string {
+  const i = Math.floor(Math.random() * 16);
+  return i.toString(16);
+}
+
+function generate(length: number): string {
+  let returnString = "";
+  let i = 0;
+  while (i < length) {
+    const result = hex();
+    returnString = returnString + result;
+    i += 1;
+  }
+  return returnString;
+}
+
+export function getExtension(fileName: string):string {
+  // given a file name, extracts the type of file
+  const index = fileName.lastIndexOf(".");
+  if (index === -1) {
+    return "";
+  }
+  return fileName.slice(index);
 }

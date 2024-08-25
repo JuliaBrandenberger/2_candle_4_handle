@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
-import { addCandle, CandleCreationInfo, getAllBrands } from "../database/db.ts";
-import { candleForms, candleSeasons, candleHolidays, isCandleSeason, isCandleForm, isCandleHoliday } from "../database/candle-data.ts";
+import { addCandle, CandleCreationInfo, getAllBrands, uuid, getExtension } from "../database/db.ts";
+import { candleForms, candleSeasons, candleHolidays, isCandleSeason, isCandleForm, isCandleHoliday, Image } from "../database/candle-data.ts";
 import { Dropdown } from "../components/Dropdown.tsx";
 
 export const handler: Handlers = {
@@ -70,6 +70,24 @@ export const handler: Handlers = {
     if (typeof notes !== "string") {
       return new Response("failed, notes is not string");
     }
+    const formImage = formData.get("image");
+    if (typeof formImage === "string") {
+      return new Response("failed, image is not a file");
+    }
+    let image: Image | null;
+    if (formImage) {
+      const filePath = uuid();
+      const extension = getExtension(formImage.name);
+      Deno.writeFile(`./media/${filePath}${extension}`, formImage.stream());
+      image = {
+        path: `./media/${filePath}`,
+        title: formImage.name,
+      };
+    }
+    else {
+      image = null;
+    }
+
     
     
 
@@ -83,7 +101,8 @@ export const handler: Handlers = {
       scentDescription,
       color, 
       year,
-      notes
+      notes,
+      image
 
     };  
 
@@ -100,7 +119,7 @@ export default function AddCandle() {
   return (
     <div>
       <h1>Add Your Candle!</h1>
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         <fieldset>
           <label>Candle Name: </label>
           <input name="candle-name"></input>
@@ -141,8 +160,12 @@ export default function AddCandle() {
           <label>Notes: </label>
           <input name="notes"></input>
         </fieldset>
+        <fieldset>
+          <label>Image: </label>
+          <input type="file" name="image"></input>
+        </fieldset>
         
-        <input type="submit"></input>
+        <input type="submit"></input> 
       </form>
     </div>
   )
