@@ -12,6 +12,7 @@ import * as $candles_id_ from "./routes/candles/[id].tsx";
 import * as $foo_a_b_c_ from "./routes/foo/[a]/b/[c].ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $view_all_candles from "./routes/view-all-candles.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -27,6 +28,7 @@ const manifest = {
     "./routes/foo/[a]/b/[c].ts": $foo_a_b_c_,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/view-all-candles.tsx": $view_all_candles,
   },
   islands: {
     "./islands/Counter.tsx": $Counter,
