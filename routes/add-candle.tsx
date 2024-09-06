@@ -171,10 +171,3 @@ export default function AddCandle() {
   )
 }
 
-// TODO:
-// ADD RESt of fields
-// update post method to make sure getting all the rigth data
-// inside of POST method
-// once form is finished cahgen post method so taht you can create a candlecreationinfo object
-// call add candle method to add to database
-// 

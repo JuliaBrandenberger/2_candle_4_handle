@@ -75,6 +75,11 @@ export function getAllBrands(): ReadonlyArray<Brand> {
   return data.brands;
 }
 
+// returns all candle objects
+export function getAllCandles(): ReadonlyArray<Candle> {
+  return data.candles;
+}
+
 // end api definition
 
 async function saveData() {
